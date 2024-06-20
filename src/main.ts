@@ -13,6 +13,6 @@ customer.Address = address;
 customer.activate();
 
 // Agregado de Order
-const item1 = new OrderItem("1", "Curso de Programação", 3000);
-const item2 = new OrderItem("2", "Curso de Arquitetura de Software", 4500);
-const order = new Order("1", "1", [item1, item2]);
+const item1 = new OrderItem("1", "Curso de Programação", 3000, "1", 1);
+const item2 = new OrderItem("2", "Curso de Arquitetura", 4500, "2", 1);
+new Order("1", "1", [item1, item2]);
