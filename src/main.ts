@@ -9,7 +9,7 @@ import { OrderItem } from "./domain/entity/order-item";
 // Agregado de Customer
 let customer = new Customer("1", "Victor Orlandini");
 const address = new Address("Rua Paulino Félix", 99, "63560-970", "Acopiara");
-customer.Address = address;
+customer.changeAddress(address);
 customer.activate();
 
 // Agregado de Order
