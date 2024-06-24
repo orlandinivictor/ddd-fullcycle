@@ -10,7 +10,7 @@ export class Order {
     this._id = id;
     this._customerId = customerId;
     this._items = items;
-    this._total = this.total();
+    this._total = this.calculateTotal();
 
     this.validate();
   }
@@ -27,7 +27,18 @@ export class Order {
     return this._items;
   }
 
-  validate() {
+  get total(): number {
+    return this._total;
+  }
+
+  updateItems(items: OrderItem[]): void {
+    this._items = items;
+
+    this.validate();
+    this.calculateTotal();
+  }
+
+  validate(): void {
     if (this._id.length === 0) {
       throw new Error("Id is required");
     }
@@ -45,7 +56,7 @@ export class Order {
     }
   }
 
-  total(): number {
+  calculateTotal(): number {
     return this._items.reduce((acc, item) => acc + item.price, 0);
   }
 }

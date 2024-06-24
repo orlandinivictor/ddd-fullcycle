@@ -9,7 +9,7 @@ export class OrderRepository implements OrderRepositoryInterface {
       {
         id: entity.id,
         customer_id: entity.customerId,
-        total: entity.total(),
+        total: entity.total,
         items: entity.items.map((item) => ({
           id: item.id,
           name: item.name,
@@ -23,7 +23,37 @@ export class OrderRepository implements OrderRepositoryInterface {
   }
 
   async update(entity: Order): Promise<void> {
-    await OrderModel.update({}, { where: { id: entity.id } });
+    for (const item of entity.items) {
+      const foundItem = await OrderItemModel.findOne({
+        where: { id: item.id },
+      });
+
+      if (!foundItem) {
+        await OrderItemModel.create({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          product_id: item.productId,
+          quantity: item.quantity,
+          order_id: entity.id,
+        });
+      }
+    }
+
+    await OrderModel.update(
+      {
+        customer_id: entity.customerId,
+        total: entity.total,
+        items: entity.items.map((item) => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          product_id: item.productId,
+          quantity: item.quantity,
+        })),
+      },
+      { where: { id: entity.id } }
+    );
   }
 
   async find(id: string): Promise<Order> {
