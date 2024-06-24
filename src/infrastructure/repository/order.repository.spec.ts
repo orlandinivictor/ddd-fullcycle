@@ -197,8 +197,46 @@ describe("Customer repository test", () => {
     const order = new Order("1", customer.id, [orderItem]);
     await orderRepository.create(order);
 
-    const orderModel = await orderRepository.find(order.id);
+    const foundOrder = await orderRepository.find(order.id);
 
-    expect(orderModel).toStrictEqual(order);
+    expect(foundOrder).toStrictEqual(order);
+  });
+
+  it("should find all orders", async () => {
+    const customerRepository = new CustomerRepository();
+    const productRepository = new ProductRepository();
+    const orderRepository = new OrderRepository();
+
+    const customer = new Customer("1", "Victor");
+    const address = new Address("Street 1", 1, "12345-678", "São Paulo");
+    customer.changeAddress(address);
+    await customerRepository.create(customer);
+
+    const product = new Product("1", "DDD", 100);
+    await productRepository.create(product);
+
+    const orderItem = new OrderItem(
+      "1",
+      product.name,
+      product.price,
+      product.id,
+      1
+    );
+    const orderItem2 = new OrderItem(
+      "2",
+      product.name,
+      product.price,
+      product.id,
+      1
+    );
+
+    const order = new Order("1", customer.id, [orderItem]);
+    await orderRepository.create(order);
+    const order2 = new Order("2", customer.id, [orderItem2]);
+    await orderRepository.create(order2);
+
+    const foundOrders = await orderRepository.findAll();
+
+    expect(foundOrders).toStrictEqual([order, order2]);
   });
 });
