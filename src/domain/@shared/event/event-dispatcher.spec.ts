@@ -1,10 +1,10 @@
-import { CustomerChangedAddressEvent } from "../customer/customer-changed-address.event";
-import { CustomerCreatedEvent } from "../customer/customer-created.event";
-import { CustomerChangeAddressHandler } from "../customer/handler/customer-change-address.handler";
-import { SendConsole1Handler } from "../customer/handler/send-console-1.handler";
-import { SendConsole2Handler } from "../customer/handler/send-console-2.handler";
-import { SendEmailWhenProductIsCreatedHandler } from "../product/handler/send-email-when-product-is-created.handler";
-import { ProductCreatedEvent } from "../product/product-created.event";
+import { CustomerChangedAddressEvent } from "../../customer/event/customer-changed-address.event";
+import { CustomerCreatedEvent } from "../../customer/event/customer-created.event";
+import { CustomerChangeAddressHandler } from "../../customer/event/handler/customer-change-address.handler";
+import { SendConsole1Handler } from "../../customer/event/handler/send-console-1.handler";
+import { SendConsole2Handler } from "../../customer/event/handler/send-console-2.handler";
+import { SendEmailWhenProductIsCreatedHandler } from "../../product/event/handler/send-email-when-product-is-created.handler";
+import { ProductCreatedEvent } from "../../product/event/product-created.event";
 import { EventDispatcher } from "./event-dispatcher";
 
 describe("Domain events tests", () => {

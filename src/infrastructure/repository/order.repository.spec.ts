@@ -5,11 +5,11 @@ import { OrderItemModel } from "../db/sequelize/model/order-item.model";
 import { OrderModel } from "../db/sequelize/model/order.model";
 import { ProductModel } from "../db/sequelize/model/product.model";
 
-import { Address } from "../../domain/entity/address";
-import { Customer } from "../../domain/entity/customer";
-import { OrderItem } from "../../domain/entity/order-item";
-import { Order } from "../../domain/entity/order";
-import { Product } from "../../domain/entity/product";
+import { Address } from "../../domain/customer/value-object/address";
+import { Customer } from "../../domain/customer/entity/customer";
+import { OrderItem } from "../../domain/checkout/entity/order-item";
+import { Order } from "../../domain/checkout/entity/order";
+import { Product } from "../../domain/product/entity/product";
 
 import { CustomerRepository } from "./customer.repository";
 import { ProductRepository } from "./product.repository";

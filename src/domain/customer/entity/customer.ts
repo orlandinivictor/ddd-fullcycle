@@ -17,7 +17,7 @@
     - customer.ts(get,set)
 */
 
-import { Address } from "./address";
+import { Address } from "../value-object/address";
 
 export class Customer {
   private _id: string;
